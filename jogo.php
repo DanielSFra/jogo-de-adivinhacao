@@ -50,6 +50,8 @@ function jogarAdivinhacao($nome_jogador, $limite_tentativas_jogo){
 $numero_secreto = rand(1,100); // gera um número aleatório entre 1 e 100
 $tentativas_feitas = 0; // contar as tentativas
 $acertou = false; // para saber se o jogador acertou 
+/* adicionado histórico de palpites */
+$palpites_historico = []; // array para armazenar os palpites, tentarei mostrar os os palpites
 
 //mensagem com o objetivo do jogo!
 
@@ -57,7 +59,7 @@ echo "\n Pensei em um  número entre  1 e 100. Tente adivinhar!\n\n";
 
 // tentativas
 while ($tentativas_feitas < $limite_tentativas_jogo && !$acertou){
-  echo "Tentativa" . ($tentativas_feitas + 1) . " de {$limite_tentativas_jogo}:\n";
+  echo "Tentativa " . ($tentativas_feitas + 1) . " de {$limite_tentativas_jogo}:\n";
   $palpite_input = readline("Seu palpite");
 
   // regra para validar se o palpite é um número entre 1 e 100
@@ -69,13 +71,14 @@ while ($tentativas_feitas < $limite_tentativas_jogo && !$acertou){
   }
 
   $palpite = (int)$palpite_input; // converte o palpite para um número inteiro
+  $palpites_historico[] = $palpite;
   $tentativas_feitas++; // incrementa o contador de tentativas
 
   // compara o palpite com o número secreto
 
   if ($palpite == $numero_secreto){
       $acertou = true;
-    echo " Parabéns,{$nome_jogador}! Você acertou {$tentativas_feitas} tentativas!\n";
+    echo " Parabéns, {$nome_jogador}! Você acertou em  {$tentativas_feitas} tentativas!\n";
 
 }elseif ($palpite < $numero_secreto){
   echo " O número é maior!\n\n";
@@ -92,7 +95,7 @@ while ($tentativas_feitas < $limite_tentativas_jogo && !$acertou){
 if(!$acertou){
   echo "Suas {$nome_jogador}! O Número correto é {$numero_secreto}.\n";
 }
- echo "n Obrigado por ter jogado ($nome_jogador}";
+ echo "\nObrigado por ter jogado ($nome_jogador}\n";
 
 }
 
