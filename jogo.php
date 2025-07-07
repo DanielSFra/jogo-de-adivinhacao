@@ -60,15 +60,17 @@ echo "\n Pensei em um  número entre  1 e 100. Tente adivinhar!\n\n";
 // tentativas
 while ($tentativas_feitas < $limite_tentativas_jogo && !$acertou){
   echo "Tentativa " . ($tentativas_feitas + 1) . " de {$limite_tentativas_jogo}:\n";
-  $palpite_input = readline("Seu palpite");
+  $palpite_input = readline("Seu palpite:  ");
 
   // regra para validar se o palpite é um número entre 1 e 100
 
   if (!is_numeric($palpite_input) || $palpite_input < 1 || $palpite_input > 100){
     echo " Entrada inválida por favor digite um número entre 1 e 100. \n";
     
-
+  continue; // continua o loop para pedir um novo palpite  
   }
+
+  
 
   $palpite = (int)$palpite_input; // converte o palpite para um número inteiro
   $palpites_historico[] = $palpite;
@@ -93,12 +95,17 @@ while ($tentativas_feitas < $limite_tentativas_jogo && !$acertou){
 
 // verifica se o jogador não acertou o número aós o número de tentativas
 if(!$acertou){
-  echo "Suas {$nome_jogador}! O Número correto é {$numero_secreto}.\n";
+  echo "Suas tentaivas acabaram {$nome_jogador}! O Número correto é {$numero_secreto}.\n"; 
 }
- echo "\nObrigado por ter jogado ($nome_jogador}\n";
+ echo "/nObrigado por ter jogado {$nome_jogador}/n";
 
 }
 
+// mostrar os palpites do jogador
+if (!empty($palpites_historico)) {
+    echo "\nSeus palpites foram: " . implode(", ", $palpites_historico) . "/n";
+
+}
 
 // temos um  número, e fazer  com que esse número seja capturado e salvo e baseada na dificuldade, escolhida
  // vamos será feito um looping while para determinada dificuldade ...
@@ -106,6 +113,6 @@ if(!$acertou){
  
 // chama a função principal do jogo com o nome do jogador e o limte de tentativas escolhida
 
-jogarAdivinhacao($nome, $tentativas);
+jogarAdivinhacao($nome, $tentativas); // aqui estava errado, só podem 2 parametros, estava utilizando 3
 
-  ?>
+  ?> 
