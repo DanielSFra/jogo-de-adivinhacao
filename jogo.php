@@ -50,6 +50,7 @@ $tentativas_feitas = 0; // contar as tentativas
 $acertou = false; // para saber se o jogador acertou 
 /* adicionado histórico de palpites */
 $palpites_historico = []; // array para armazenar os palpites, tentarei mostrar os os palpites
+$resposta = ""; // variável para reinicar o jogo
 
 //mensagem com o objetivo do jogo!
 
@@ -78,7 +79,7 @@ while ($tentativas_feitas < $limite_tentativas_jogo && !$acertou){
 
   if ($palpite == $numero_secreto){
       $acertou = true;
-    echo "✅ Parabéns, {$nome_jogador}! Você acertou em  {$tentativas_feitas} tentativas!\n";
+    echo "🎉 Parabéns, {$nome_jogador}! Você acertou em  {$tentativas_feitas} tentativas!\n";
 
 }elseif ($palpite < $numero_secreto){
   echo " O número é maior!\n\n";
@@ -93,7 +94,7 @@ while ($tentativas_feitas < $limite_tentativas_jogo && !$acertou){
 
 // verifica se o jogador não acertou o número aós o número de tentativas
 if(!$acertou){
-  echo "\Suas tentaivas acabaram {$nome_jogador}! O Número correto é {$numero_secreto}.\n"; 
+  echo "\ ❌ Suas tentaivas acabaram {$nome_jogador}! O Número correto é {$numero_secreto}.\n"; 
 }
  
 echo "\nObrigado por ter jogado, {$nome_jogador}!👋\n";
@@ -103,10 +104,18 @@ echo "\nObrigado por ter jogado, {$nome_jogador}!👋\n";
 
 // mostrar os palpites do jogador no final do jogo
 if (!empty($palpites_historico)) {
-    echo "\nSeus palpites foram: " . implode(", ", $palpites_historico) . "\n";
+    echo "\n 📜 Seus palpites foram: " . implode(", ", $palpites_historico) . "\n";
 
   }
-}
+
+  //iniciar o jogo novamente
+  $resposta = strtolower (readline("Deseja jogar novamente? (s/n):"));
+while ($resposta === 's' || $resposta === 'sim');
+
+echo "\nObrigado por jogar! até a próxima, {$nome_jogador}\n";
+
+
+} 
 
 // temos um  número, e fazer  com que esse número seja capturado e salvo e baseada na dificuldade, escolhida
  // vamos será feito um looping while para determinada dificuldade ...
