@@ -21,22 +21,20 @@ $tentativas = 0; // inicio de tentativas
 while ($tentativas === 0){
    $dificuldade = readline("Digite o número da dificuldade: ");
 
-if($dificuldade == $facil ){
+if ($dificuldade == $facil ){
    echo "voce escolheu o nível fácil\n";
    $tentativas = 20;
    
-}
-elseif($dificuldade == $medio){
-  echo "voce escolheu o nível médio\n";
+}  elseif ($dificuldade == $medio){
+   echo "voce escolheu o nível médio\n";
    $tentativas = 10;
-}
-elseif($dificuldade == $dificil){
-  echo "voce escolheu o nível difícil\n";
+}  elseif ($dificuldade == $dificil){
+   echo "voce escolheu o nível difícil\n";
    $tentativas = 5;
-} else{
- echo "opção inválida. Por favor escolha um dos níveis de dificuldade\n";
- continue;
-}
+} else {
+   echo "opção inválida. Por favor escolha um dos níveis de dificuldade\n";
+   continue;
+  }
 
 } 
 
@@ -55,7 +53,7 @@ $palpites_historico = []; // array para armazenar os palpites, tentarei mostrar 
 
 //mensagem com o objetivo do jogo!
 
-echo "\n Pensei em um  número entre  1 e 100. Tente adivinhar!\n\n";
+echo "\n 🤔 Pensei em um  número entre  1 e 100. Tente adivinhar!\n\n";
 
 // tentativas
 while ($tentativas_feitas < $limite_tentativas_jogo && !$acertou){
@@ -65,7 +63,7 @@ while ($tentativas_feitas < $limite_tentativas_jogo && !$acertou){
   // regra para validar se o palpite é um número entre 1 e 100
 
   if (!is_numeric($palpite_input) || $palpite_input < 1 || $palpite_input > 100){
-    echo " Entrada inválida por favor digite um número entre 1 e 100. \n";
+    echo " ⚠️ Entrada inválida por favor digite um número entre 1 e 100. \n";
     
   continue; // continua o loop para pedir um novo palpite  
   }
@@ -80,7 +78,7 @@ while ($tentativas_feitas < $limite_tentativas_jogo && !$acertou){
 
   if ($palpite == $numero_secreto){
       $acertou = true;
-    echo " Parabéns, {$nome_jogador}! Você acertou em  {$tentativas_feitas} tentativas!\n";
+    echo "✅ Parabéns, {$nome_jogador}! Você acertou em  {$tentativas_feitas} tentativas!\n";
 
 }elseif ($palpite < $numero_secreto){
   echo " O número é maior!\n\n";
@@ -95,16 +93,19 @@ while ($tentativas_feitas < $limite_tentativas_jogo && !$acertou){
 
 // verifica se o jogador não acertou o número aós o número de tentativas
 if(!$acertou){
-  echo "Suas tentaivas acabaram {$nome_jogador}! O Número correto é {$numero_secreto}.\n"; 
+  echo "\Suas tentaivas acabaram {$nome_jogador}! O Número correto é {$numero_secreto}.\n"; 
 }
- echo "/nObrigado por ter jogado {$nome_jogador}/n";
+ 
+echo "\nObrigado por ter jogado, {$nome_jogador}!👋\n";
 
-}
 
-// mostrar os palpites do jogador
+
+
+// mostrar os palpites do jogador no final do jogo
 if (!empty($palpites_historico)) {
-    echo "\nSeus palpites foram: " . implode(", ", $palpites_historico) . "/n";
+    echo "\nSeus palpites foram: " . implode(", ", $palpites_historico) . "\n";
 
+  }
 }
 
 // temos um  número, e fazer  com que esse número seja capturado e salvo e baseada na dificuldade, escolhida
