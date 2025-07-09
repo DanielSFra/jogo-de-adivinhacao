@@ -110,12 +110,22 @@ if (!empty($palpites_historico)) {
 
   //iniciar o jogo novamente
   $resposta = strtolower (readline("Deseja jogar novamente? (s/n):"));
-while ($resposta === 's' || $resposta === 'sim');
+if ($resposta === 's' || $resposta === 'sim') {
+   echo "n\vamos jogar novamente, {$nome_jogador}\n";
+   jogarAdivinhacao($nome_jogador, $limite_tentativas_jogo); //chama a funçao novamente
+   return; // sai da funçao e continua o jogo
+} elseif ($resposta === 'n' || $resposta === 'não') {
+  echo "\nObrigado por jogar! até a próxima, {$nome_jogador}\n";
+} else{
+  echo "\nResposta inválida. Jogo encerrado.\n";
+}
 
-echo "\nObrigado por jogar! até a próxima, {$nome_jogador}\n";
+}
 
 
-} 
+
+
+
 
 // temos um  número, e fazer  com que esse número seja capturado e salvo e baseada na dificuldade, escolhida
  // vamos será feito um looping while para determinada dificuldade ...
